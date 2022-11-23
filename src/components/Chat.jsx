@@ -8,7 +8,6 @@ function Chat({ user }) {
         <Box bgColor='cyan.100'>
           
         </Box>
-        
       </Flex>
     );
   }
