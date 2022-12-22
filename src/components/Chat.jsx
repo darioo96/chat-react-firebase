@@ -30,7 +30,7 @@ function Chat({ user }) {
     return (
       <Flex
         m="auto"
-        w="xl"
+        w="100%"
         bgColor="blackAlpha.300"
         direction="column"
         roundedTop="3xl"
@@ -43,7 +43,7 @@ function Chat({ user }) {
         >
           <Text textAlign="center"> Chat-Prueba</Text>
         </Box>
-        <Flex direction="column" p="7" gap="2">
+        <Flex direction="column" p="7" gap="2" overflow='auto' maxH='60vh'>
           {mesages.map((mesage) => {
             return (
               <Flex
@@ -61,14 +61,7 @@ function Chat({ user }) {
             );
           })}
         </Flex>
-        <Flex
-          gap="2"
-          bgColor="whiteAlpha.600"
-          border="1px"
-          p="3"
-          borderColor="whiteAlpha.900"
-          rounded="5"
-        >
+        <Flex gap="2" bgColor="whiteAlpha.600" border="1px" p="3" borderColor="whiteAlpha.900" rounded="5">
           <Input value={text} onChange={handleChangeInput} />
           <Button onClick={handleSubmit}>
             {" "}
