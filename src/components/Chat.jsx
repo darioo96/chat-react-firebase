@@ -1,25 +1,40 @@
 import { Avatar, Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { AiOutlineSend } from "react-icons/ai";
-
-import React, { useState } from "react";
-// import { ref, set } from "firebase/database";
-// import { database } from "../connection/fireBaseConnection";
-// import { uid } from "uid"
+import React, { useState, useEffect } from "react";
+ import { onValue, ref, set } from "firebase/database";
+ import { database } from "../connection/fireBaseConnection";
+ import { uid } from "uid"
 
 function Chat({ user }) {
   const [text, setText] = useState("");
   const [mesages, setMesages] = useState([]);
 
   //write
-  // const writeToDataBase = () => {
-  //   const uuid = uid();
-  //   set(ref(database, `/${uuid}`))
-  // }
+   const writeToDataBase = () => {
+    const id = mesages.length;
+     set(ref(database, `/chats/${id}`),{
+      text,
+      user,
+     })
+  }
+
+  //read
+  useEffect(() => {
+    onValue(ref(database, '/chats'),snapshot => {
+      setMesages([])
+      const data = snapshot.val()
+      if(data !== null){
+        Object.values(data).map((text) => {
+          setMesages((oldArray) => [...oldArray,text])
+        })
+      }
+    })
+  }, [])
+  
 
   const handleSubmit = () => {
-    setMesages([...mesages, { name: user, text: text }]);
+    writeToDataBase()
     setText("");
-    // writeToDataBase
   };
 
   const handleChangeInput = (e) => {
@@ -29,11 +44,12 @@ function Chat({ user }) {
   if (user) {
     return (
       <Flex
-        m="auto"
         w="100%"
+        h='100%'
         bgColor="blackAlpha.300"
         direction="column"
         roundedTop="3xl"
+        justify='space-between'
       >
         <Box
           padding="5"
@@ -43,17 +59,18 @@ function Chat({ user }) {
         >
           <Text textAlign="center"> Chat-Prueba</Text>
         </Box>
-        <Flex direction="column" p="7" gap="2" overflow='auto' maxH='60vh'>
+
+        <Flex direction="column" w='100%' p="7" gap="3" overflow="auto">
           {mesages.map((mesage) => {
             return (
               <Flex
-                alignSelf={user == mesage.name ? "end" : []}
-                direction={user == mesage.name ? "row-reverse" : []}
+                alignSelf={user == mesage.user ? "end" : []}
+                direction={user == mesage.user ? "row-reverse" : []}
                 alignItems="center"
                 gap="5"
               >
-                <Avatar size="sm" name={mesage.name} />
-                <Text bgColor="red.200" p="3" paddingInline="10" rounded="full">
+                <Avatar size="sm" name={mesage.user} />
+                <Text bgColor="red.100" p="3" paddingInline="10" rounded="full">
                   {" "}
                   {mesage.text}{" "}
                 </Text>
@@ -61,7 +78,15 @@ function Chat({ user }) {
             );
           })}
         </Flex>
-        <Flex gap="2" bgColor="whiteAlpha.600" border="1px" p="3" borderColor="whiteAlpha.900" rounded="5">
+
+        <Flex
+          gap="2"
+          bgColor="whiteAlpha.600"
+          border="1px"
+          p="3"
+          borderColor="whiteAlpha.900"
+          rounded="7"
+        >
           <Input value={text} onChange={handleChangeInput} />
           <Button onClick={handleSubmit}>
             {" "}
