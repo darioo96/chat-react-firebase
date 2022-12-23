@@ -71,10 +71,10 @@ function Chat({ user }) {
                 gap="5"
               >
                 <Avatar size="sm" name={mesage.user} />
-                <Text bgColor="red.100" p="3" paddingInline="10" rounded="full">
-                  {" "}
-                  {mesage.text}{" "}
-                </Text>
+                <Box direction='column' bgColor='whatsapp.100' borderRadius='lg' paddingInline='4'>
+                  <Text color='black' fontSize='xx-small' fontWeight='bold'>{(mesage.user).toUpperCase()}</Text>
+                  <Text fontSize='small'>{mesage.text}</Text>
+                </Box>
               </Flex>
             );
           })}
