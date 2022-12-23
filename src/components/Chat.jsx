@@ -1,40 +1,41 @@
 import { Avatar, Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { AiOutlineSend } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
- import { onValue, ref, set } from "firebase/database";
- import { database } from "../connection/fireBaseConnection";
- import { uid } from "uid"
+import { onValue, ref, set } from "firebase/database";
+import { database } from "../connection/fireBaseConnection";
 
 function Chat({ user }) {
   const [text, setText] = useState("");
   const [mesages, setMesages] = useState([]);
 
   //write
-   const writeToDataBase = () => {
+  const writeToDataBase = () => {
     const id = mesages.length;
-     set(ref(database, `/chats/${id}`),{
+    set(ref(database, `/chats/${id}`), {
       text,
       user,
-     })
-  }
+    });
+  };
 
   //read
   useEffect(() => {
-    onValue(ref(database, '/chats'),snapshot => {
-      setMesages([])
-      const data = snapshot.val()
-      if(data !== null){
+    onValue(ref(database, "/chats"), (snapshot) => {
+      setMesages([]);
+      const data = snapshot.val();
+      if (data !== null) {
         Object.values(data).map((text) => {
-          setMesages((oldArray) => [...oldArray,text])
-        })
+          setMesages((oldArray) => [...oldArray, text]);
+        });
       }
-    })
-  }, [])
-  
+    });
+  }, []);
 
   const handleSubmit = () => {
-    writeToDataBase()
-    setText("");
+    if(text){
+      writeToDataBase();
+      setText("");
+    }
+    
   };
 
   const handleChangeInput = (e) => {
@@ -45,11 +46,11 @@ function Chat({ user }) {
     return (
       <Flex
         w="100%"
-        h='100%'
+        h="100%"
         bgColor="blackAlpha.300"
         direction="column"
         roundedTop="3xl"
-        justify='space-between'
+        justify="space-between"
       >
         <Box
           padding="5"
@@ -60,7 +61,7 @@ function Chat({ user }) {
           <Text textAlign="center"> Chat-Prueba</Text>
         </Box>
 
-        <Flex direction="column" w='100%' p="7" gap="3" overflow="auto">
+        <Flex direction="column" w="100%" p="7" gap="3" overflow="auto">
           {mesages.map((mesage) => {
             return (
               <Flex
