@@ -31,11 +31,10 @@ function Chat({ user }) {
   }, []);
 
   const handleSubmit = () => {
-    if(text){
+    if (text) {
       writeToDataBase();
       setText("");
     }
-    
   };
 
   const handleChangeInput = (e) => {
@@ -58,7 +57,7 @@ function Chat({ user }) {
           color="whiteAlpha.900"
           roundedTop="3xl"
         >
-          <Text textAlign="center"> Chat-Prueba</Text>
+          <Text textAlign="center">Chat-Prueba</Text>
         </Box>
 
         <Flex direction="column" w="100%" p="7" gap="3" overflow="auto">
@@ -71,9 +70,16 @@ function Chat({ user }) {
                 gap="5"
               >
                 <Avatar size="sm" name={mesage.user} />
-                <Box direction='column' bgColor='whatsapp.100' borderRadius='lg' paddingInline='4'>
-                  <Text color='black' fontSize='xx-small' fontWeight='bold'>{(mesage.user).toUpperCase()}</Text>
-                  <Text fontSize='small'>{mesage.text}</Text>
+                <Box
+                  direction="column"
+                  bgColor="whatsapp.100"
+                  borderRadius="lg"
+                  paddingInline="4"
+                >
+                  <Text color="black" fontSize="xx-small" fontWeight="bold">
+                    {mesage.user.toUpperCase()}
+                  </Text>
+                  <Text fontSize="small">{mesage.text}</Text>
                 </Box>
               </Flex>
             );
