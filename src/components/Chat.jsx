@@ -3,6 +3,7 @@ import { AiOutlineSend } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
 import { onValue, ref, set } from "firebase/database";
 import { database } from "../connection/fireBaseConnection";
+import readDataChat from "../connection/dataChat";
 
 function Chat({ user }) {
   const [text, setText] = useState("");
@@ -19,15 +20,7 @@ function Chat({ user }) {
 
   //read
   useEffect(() => {
-    onValue(ref(database, "/chats"), (snapshot) => {
-      setMesages([]);
-      const data = snapshot.val();
-      if (data !== null) {
-        Object.values(data).map((text) => {
-          setMesages((oldArray) => [...oldArray, text]);
-        });
-      }
-    });
+    readDataChat(setMesages);
   }, []);
 
   const handleSubmit = () => {
