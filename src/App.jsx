@@ -10,7 +10,7 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Flex direction='row' alignItems='center' w='100vw' h='100vh' bgColor='blackAlpha.300' overflow='hidden'>
+      <Flex direction='row' alignItems='center' w='100vw' h='100vh' bgColor='green.50' overflow='hidden'>
         <Navbar user = {user}/>
         <IsLoged user={user} setUser={setUser}/>
       </Flex>
