@@ -18,7 +18,6 @@ function Chat({ user }) {
     });
   };
 
-  //read
   useEffect(() => {
     readDataChat(setMesages);
   }, []);
