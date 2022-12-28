@@ -1,11 +1,11 @@
-import { Flex, Input } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 
 import React from "react";
 
 function User() {
     return <>
-        <Flex>
-            <Input variant='flushed' placeholder='Buscar contacto' />
+        <Flex h='90%' bg='whiteAlpha.100'>
+            
         </Flex>
     </>;
 }
