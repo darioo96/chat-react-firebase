@@ -10,26 +10,33 @@ import {
   CardBody,
   Divider,
   CardFooter,
+  useToast,
 } from "@chakra-ui/react";
 import { AiOutlineSend } from "react-icons/ai";
 //import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import SignUser from "./SignUser";
+import { signIn } from "../connection/signIn";
 
 function LogUser({ setUser }) {
-  const [customUser, setCustomUser] = useState("");
+  const toast = useToast()
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChange = (event) => setCustomUser(event.target.value);
-  const handleSubmit = () => setUser(customUser);
+  const handleChangeMail = (event) => setMail(event.target.value);
+  const handleChangePassword = (event) => setPassword(event.target.value);
+
+  const handleSubmit = () => {
+    signIn(mail,password,setUser,toast)
+  }
   return (
     <Card m='auto' variant='filled' bg='blackAlpha.300'>
       <CardBody  display="flex" gap="3" flexDir="column" alignItems="center">
-        <Avatar bg="blue.300" color="white" size="xl" name={customUser} />
+        <Avatar bg="blue.300" color="white" size="xl" name={mail} />
         <FormControl display="flex" flexDir="column" alignItems="center" gap="5">
           <FormLabel>Iniciar Sesión</FormLabel>
-          <Input type="text" textAlign="center" w="l" onChange={handleChange} placeholder='User'/>
-          <Input type="password" textAlign="center" w="l" placeholder='Password'/>
+          <Input type="text" textAlign="center" w="l" onChange={handleChangeMail} placeholder='E-mail'/>
+          <Input type="password" textAlign="center" w="l" onChange={handleChangePassword} placeholder='Password'/>
           <Flex align='center' gap='2'>
-
             <Button rightIcon={<AiOutlineSend />} colorScheme="blue" size="md" variant="outline" onClick={handleSubmit}>
             Ingresar
             </Button>
