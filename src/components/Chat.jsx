@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { AiOutlineSend } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
-import { onValue, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import { database } from "../connection/fireBaseConnection";
 import readDataChat from "../connection/dataChat";
 
