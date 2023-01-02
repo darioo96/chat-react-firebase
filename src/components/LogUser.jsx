@@ -16,6 +16,7 @@ import { AiOutlineSend } from "react-icons/ai";
 //import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import SignUser from "./SignUser";
 import { signIn } from "../connection/signIn";
+import readUser from "../connection/dataUser";
 
 function LogUser({ setUser }) {
   const toast = useToast()
@@ -27,6 +28,7 @@ function LogUser({ setUser }) {
 
   const handleSubmit = () => {
     signIn(mail,password,setUser,toast)
+
   }
   return (
     <Card m='auto' variant='filled' bg='blackAlpha.300'>
