@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Text, Spacer, Avatar } from "@chakra-ui/react";
+import { Flex, Text, Spacer, Avatar, Menu, MenuButton, MenuItem, MenuList, Button } from "@chakra-ui/react";
 import User from "./User";
 
 function Navbar({ user }) {
@@ -9,7 +9,14 @@ function Navbar({ user }) {
         <Flex>
           <Text color="whiteAlpha.800" as="b">React - Chat</Text>
           <Spacer />
-          <Avatar name={user} visibility={user ? "visible" : "hidden"} />
+          <Menu isLazy>
+            <MenuButton>
+              <Avatar name={user} visibility={user ? "visible" : "hidden"} />
+            </MenuButton>
+            <MenuList p='0'>
+              <Button  w='100%' variant='ghost'>Cerrar Sesion</Button>
+            </MenuList>
+          </Menu>
         </Flex>
         <User />
       </Flex>
