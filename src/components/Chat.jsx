@@ -61,7 +61,7 @@ function Chat({ user }) {
                 alignItems="center"
                 gap="5"
               >
-                <Avatar size="sm" name={mesage.user} />
+                <Avatar size="sm" name={mesage.user} position='static'/>
                 <Box
                   direction="column"
                   bgColor="whatsapp.100"
@@ -86,7 +86,7 @@ function Chat({ user }) {
           borderColor="whiteAlpha.900"
           rounded="7"
         >
-          <Input value={text} onChange={handleChangeInput} />
+          <Input value={text} onChange={handleChangeInput} pos='static'/>
           <Button onClick={handleSubmit}>
             {" "}
             <AiOutlineSend />
