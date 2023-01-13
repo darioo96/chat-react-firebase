@@ -1,28 +1,46 @@
 import React from "react";
-import { Flex, Text, Spacer, Avatar, Menu, MenuButton, MenuItem, MenuList, Button } from "@chakra-ui/react";
-import User from "./User";
+import {
+  Flex,
+  Text,
+  Spacer,
+  Avatar,
+  Button,
+  useDisclosure,
+  Slide,
+  Box,
+} from "@chakra-ui/react";
 
-function Navbar({ user , setUser}) {
-  const  handleClick = () => setUser('')
+function Navbar({ user, setUser }) {
+  const handleClick = () => setUser("");
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
     <>
-      <Flex bg="blackAlpha.700" w="30vw" h="100vh" p="5" direction='column' justify='space-between' borderRightRadius='3xl'>
-        <Flex>
-          <Text color="whiteAlpha.800" as="b">React - Chat</Text>
-          <Spacer />
-          <Menu isLazy>
-            <MenuButton visibility={user ? "visible" : "hidden"}>
-              <Avatar name={user}/>
-            </MenuButton>
-            <MenuList p='0'>
-              <MenuItem>
-              <Button w='100%' variant='ghost' onClick={handleClick}>Cerrar Sesion</Button>
-              </MenuItem>
-            </MenuList>
-          </Menu>
+      <Avatar
+        visibility={user ? "visible" : "hidden"}
+        name={user}
+        position="absolute"
+        top="3"
+        left="3"
+        zIndex="2"
+        onClick={onToggle}
+      />
+
+      <Slide direction="left" in={isOpen} zIndex="1">
+        <Flex
+          color="white"
+          bg="gray.800"
+          rounded="md"
+          h="100%"
+          w="xs"
+          shadow="md"
+        >
+          asdasdsad
+          <Button colorScheme='whiteAlpha' onClick={handleClick} alignSelf='end' m='5'>
+            Cerrar Sesion
+          </Button>
         </Flex>
-        <User />
-      </Flex>
+      </Slide>
     </>
   );
 }
