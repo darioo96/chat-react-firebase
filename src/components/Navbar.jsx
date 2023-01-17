@@ -1,13 +1,10 @@
 import React from "react";
 import {
   Flex,
-  Text,
-  Spacer,
   Avatar,
   Button,
   useDisclosure,
-  Slide,
-  Box,
+  Slide
 } from "@chakra-ui/react";
 
 function Navbar({ user, setUser }) {
