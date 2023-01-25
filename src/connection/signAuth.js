@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
-import { auth, database } from "./fireBaseConnection";
+import { auth, db } from "./fireBaseConnection";
+import { doc, setDoc } from "firebase/firestore"; 
 
 
 export default async function signAuth(user,email,password,onClose,setLoading,toast){
@@ -29,9 +30,9 @@ export default async function signAuth(user,email,password,onClose,setLoading,to
     }
 }
 
-const writeToDataBaseUser = (user,uid) => {
-    set(ref(database, `/users/${uid}`), {
-      user
-    });
-  };
+const writeToDataBaseUser = async (user,uid) => {
+  await setDoc(doc(db, "users", uid), {
+    name: user
+  })
+  }
 
