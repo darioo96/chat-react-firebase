@@ -10,7 +10,11 @@ function App() {
   const theme = extendTheme({
     colors: {
       brand: {
-        100: "#BCDD97",
+        'black': "#333333",
+        'white': "#FFFFFF",
+        'sky': "#E1F4F3",
+        'brown': "#706C61",
+
       },
     },
   });
@@ -22,7 +26,7 @@ function App() {
         alignItems="center"
         w="100vw"
         h="100vh"
-        bgColor="brand.100"
+        bgColor="brand.black"
         overflow="hidden"
       >
         <Navbar user={user} setUser={setUser} />
