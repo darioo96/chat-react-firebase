@@ -32,8 +32,7 @@ function Navbar({ user, setUser }) {
           w="xs"
           shadow="md"
         >
-          asdasdsad
-          <Button colorScheme='whiteAlpha' onClick={handleClick} alignSelf='end' m='5'>
+          <Button colorScheme='whiteAlpha' onClick={handleClick} alignSelf='end' justifySelf='center' m='5'>
             Cerrar Sesion
           </Button>
         </Flex>
