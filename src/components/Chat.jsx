@@ -54,9 +54,10 @@ function Chat({ user }) {
         </Box>
 
         <Flex direction="column" w="100%" p="7" gap="3" overflow="auto">
-          {mesages.map((mesage) => {
+          {mesages.map((mesage,index) => {
             return (
               <Flex
+                key={index}
                 alignSelf={user == mesage.user ? "end" : []}
                 direction={user == mesage.user ? "row-reverse" : []}
                 alignItems="center"
