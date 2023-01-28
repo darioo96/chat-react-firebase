@@ -4,8 +4,10 @@ import {
   Avatar,
   Button,
   useDisclosure,
-  Slide
+  Slide,
+  Stack,
 } from "@chakra-ui/react";
+import SearchUser from "./SearchUser";
 
 function Navbar({ user, setUser }) {
   const handleClick = () => setUser("");
@@ -25,6 +27,8 @@ function Navbar({ user, setUser }) {
 
       <Slide direction="left" in={isOpen} zIndex="1">
         <Flex
+          flexDir="column"
+          justifyContent="space-between"
           color="white"
           bg="gray.800"
           rounded="md"
@@ -32,7 +36,17 @@ function Navbar({ user, setUser }) {
           w="xs"
           shadow="md"
         >
-          <Button colorScheme='whiteAlpha' onClick={handleClick} alignSelf='end' justifySelf='center' m='5'>
+          <Stack p='5'>
+            <SearchUser />
+          </Stack>
+          hoas
+          <Button
+            colorScheme="whiteAlpha"
+            onClick={handleClick}
+            alignSelf="end"
+            justifySelf="center"
+            m="5"
+          >
             Cerrar Sesion
           </Button>
         </Flex>
